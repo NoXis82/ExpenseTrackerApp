@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.compilerKsp)
-//    kotlin("kapt")
 }
 
 android {
@@ -38,11 +37,14 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    kotlin {
+        jvmToolchain(8)
+    }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
     packaging {
         resources {
