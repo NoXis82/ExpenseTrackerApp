@@ -2,6 +2,7 @@ package com.noxis.expensetrackerapp.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -43,7 +44,7 @@ fun CardItem(modifier: Modifier) {
             Column(modifier = Modifier.align(Alignment.CenterStart)) {
                 Text(text = "Total balance", fontSize = 16.sp, color = Color.White)
                 Text(
-                    text = "23.456 руб",
+                    text = "23456.00 руб",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
@@ -55,22 +56,43 @@ fun CardItem(modifier: Modifier) {
                 modifier = Modifier.align(Alignment.CenterEnd)
             )
         }
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Column {
-                    Row {
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_income),
-                            contentDescription = null
-                        )
-                        Spacer(modifier = Modifier.size(8.dp))
-                        Text(text = "Income")
-                    }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            CardRowItem(
+                imageId = R.drawable.ic_income,
+                title = "Income",
+                amount = "23546.00 руб"
+            )
 
-                }
-            }
+            CardRowItem(
+                imageId = R.drawable.ic_expense,
+                title = "Expense",
+                amount = "2500.00 руб"
+            )
 
-
+        }
 
     }
 
 }
+
+@Composable
+fun CardRowItem(imageId: Int, title: String, amount: String) {
+    Column {
+        Row {
+            Image(
+                painter = painterResource(id = imageId),
+                contentDescription = null
+            )
+            Spacer(modifier = Modifier.size(8.dp))
+            Text(text = title, fontSize = 16.sp, color = Color.White)
+        }
+        Text(text = amount, fontSize = 16.sp, color = Color.White)
+    }
+}
+
