@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import com.noxis.expensetrackerapp.R
 
 
@@ -73,6 +74,17 @@ fun HomeScreen() {
                         end.linkTo(parent.end)
                     }
             )
+            TransactionList(modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 6.dp)
+                .constrainAs(list) {
+                    top.linkTo(card.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom)
+                    height = Dimension.fillToConstraints
+                })
+
         }
     }
 }
