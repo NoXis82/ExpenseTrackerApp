@@ -1,4 +1,4 @@
-package com.noxis.expensetrackerapp.presentation
+package com.example.home.main.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -15,9 +15,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.noxis.expensetrackerapp.R
+import com.example.home.main.R
 
 @Composable
 fun TransactionList(modifier: Modifier) {
@@ -77,15 +78,16 @@ fun TransactionItem(title: String, amount: String, data: String, imageId: Int, c
             )
             Spacer(modifier = Modifier.size(8.dp))
             Column {
-                Text(text = title, fontSize = 16.sp)
-                Text(text = data, fontSize = 12.sp)
+                ExpenseTextView(text = title, fontSize = 16.sp, fontWeight = FontWeight.Medium)
+                ExpenseTextView(text = data, fontSize = 12.sp)
             }
         }
-        Text(
+        ExpenseTextView(
             text = amount,
             fontSize = 20.sp,
             color = color,
-            modifier = Modifier.align(Alignment.CenterEnd)
+            modifier = Modifier.align(Alignment.CenterEnd),
+            fontWeight = FontWeight.SemiBold,
         )
     }
 }
