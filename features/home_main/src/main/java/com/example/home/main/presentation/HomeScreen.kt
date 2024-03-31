@@ -1,4 +1,4 @@
-package com.noxis.expensetrackerapp.presentation
+package com.example.home.main.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -20,11 +20,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import com.noxis.expensetrackerapp.R
+import com.example.home.main.R
 
 
 @Composable
-@Preview(showBackground = true)
 fun HomeScreen() {
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -74,6 +73,7 @@ fun HomeScreen() {
                         end.linkTo(parent.end)
                     }
             )
+
             TransactionList(modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 6.dp)

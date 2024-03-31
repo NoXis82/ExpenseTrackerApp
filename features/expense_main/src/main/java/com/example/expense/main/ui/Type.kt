@@ -1,4 +1,4 @@
-package com.noxis.expensetrackerapp.ui.theme
+package com.example.expense.main.ui
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.noxis.expensetrackerapp.R
+import com.example.expense.main.R
 
 val InternalFont = FontFamily(
     Font(R.font.inter_black),

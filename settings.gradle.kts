@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "ExpenseTrackerApp"
 include(":app")
- 
+include(":database")
+include(":features:expense_main")
+include(":features:home_main")

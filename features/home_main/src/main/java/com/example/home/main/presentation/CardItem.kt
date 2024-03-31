@@ -1,4 +1,4 @@
-package com.noxis.expensetrackerapp.presentation
+package com.example.home.main.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,8 +22,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.noxis.expensetrackerapp.R
-import com.noxis.expensetrackerapp.ui.theme.Zink
+import com.example.home.main.R
+import com.example.home.main.ui.Zink
 
 @Composable
 fun CardItem(modifier: Modifier) {
