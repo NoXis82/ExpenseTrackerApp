@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,48 +20,38 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.expense.database.model.ExpenseEntity
 import com.example.home.main.R
 
 @Composable
-fun TransactionList(modifier: Modifier) {
-    Column(modifier = modifier.padding(horizontal = 16.dp)) {
-        Box(modifier = modifier.fillMaxWidth()) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ) {
-                Text(text = "Transactions History", fontSize = 20.sp)
-                Text(text = "See all", fontSize = 16.sp, color = Color.Gray)
+fun TransactionList(modifier: Modifier, list: List<ExpenseEntity>) {
+    LazyColumn(modifier = modifier.padding(horizontal = 16.dp)) {
+        item {
+            Box(modifier = modifier.fillMaxWidth()) {
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                ) {
+                    Text(text = "Transactions History", fontSize = 20.sp)
+                    Text(text = "See all", fontSize = 16.sp, color = Color.Gray)
+                }
             }
         }
-        TransactionItem(
-            title = "Upwork",
-            amount = "+ 850.00 руб",
-            data = "Today",
-            imageId = R.drawable.ic_upwork,
-            color = Color.Green
-        )
-        TransactionItem(
-            title = "Netflix",
-            amount = "- 250.00 руб",
-            data = "Yesterday",
-            imageId = R.drawable.ic_netflix,
-            color = Color.Red
-        )
-        TransactionItem(
-            title = "Paypal",
-            amount = "+ 1050.00 руб",
-            data = "Today",
-            imageId = R.drawable.ic_paypal,
-            color = Color.Green
-        )
-        TransactionItem(
-            title = "Youtube",
-            amount = "- 50.00 руб",
-            data = "Today",
-            imageId = R.drawable.ic_youtube,
-            color = Color.Red
-        )
+
+        items(list) { item ->
+            TransactionItem(
+                title = item.title,
+                amount = if (item.type == "Income") "+ ${item.amount}" else "- ${item.amount}",
+                data = item.date.toString(),
+                imageId = when {
+                    Category.PAYPAL.category == item.category -> Category.PAYPAL.iconId
+                    Category.NETFLIX.category == item.category -> Category.NETFLIX.iconId
+                    else -> R.drawable.ic_starbucks
+                },
+                color = if (item.type == "Income") Color.Green else Color.Red
+            )
+        }
     }
 }
 
@@ -90,4 +82,9 @@ fun TransactionItem(title: String, amount: String, data: String, imageId: Int, c
             fontWeight = FontWeight.SemiBold,
         )
     }
+}
+
+enum class Category(val category: String, val iconId: Int) {
+    PAYPAL("PayPal", R.drawable.ic_paypal),
+    NETFLIX("Netflix", R.drawable.ic_netflix),
 }

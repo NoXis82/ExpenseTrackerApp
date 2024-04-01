@@ -26,7 +26,7 @@ import com.example.home.main.R
 import com.example.home.main.ui.Zink
 
 @Composable
-fun CardItem(modifier: Modifier) {
+fun CardItem(modifier: Modifier, expense: String, income: String, balance: String) {
     Column(
         modifier = modifier
             .padding(16.dp)
@@ -44,7 +44,7 @@ fun CardItem(modifier: Modifier) {
             Column(modifier = Modifier.align(Alignment.CenterStart)) {
                 Text(text = "Total balance", fontSize = 16.sp, color = Color.White)
                 Text(
-                    text = "23456.00 руб",
+                    text = balance,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
@@ -66,13 +66,13 @@ fun CardItem(modifier: Modifier) {
             CardRowItem(
                 imageId = R.drawable.ic_income,
                 title = "Income",
-                amount = "23546.00 руб"
+                amount = income
             )
 
             CardRowItem(
                 imageId = R.drawable.ic_expense,
                 title = "Expense",
-                amount = "2500.00 руб"
+                amount = expense
             )
 
         }
