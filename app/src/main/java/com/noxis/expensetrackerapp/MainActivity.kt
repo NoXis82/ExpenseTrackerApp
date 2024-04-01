@@ -6,10 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.expense.main.presentation.AddExpense
 import com.example.home.main.presentation.HomeScreen
 import com.noxis.expensetrackerapp.ui.theme.ExpenseTrackerAppTheme
 
@@ -23,8 +20,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-//                    HomeScreen()
-PreviewHome()
+                    HomeScreen()
 //                AddExpense()
                 }
             }
@@ -32,8 +28,3 @@ PreviewHome()
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewHome(){
-    AddExpense()
-}

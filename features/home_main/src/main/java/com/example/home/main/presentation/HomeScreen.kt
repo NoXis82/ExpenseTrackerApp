@@ -10,21 +10,26 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.example.home.main.R
+import com.example.home.main.viewmodel.HomeViewModel
+import com.example.home.main.viewmodel.HomeViewModelFactory
 
 
 @Composable
 fun HomeScreen() {
+    val viewModel = HomeViewModelFactory(LocalContext.current).create(HomeViewModel::class.java)
+    val state = viewModel.expenses.collectAsState(initial = emptyList())
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -65,13 +70,18 @@ fun HomeScreen() {
                     modifier = Modifier.align(Alignment.CenterEnd)
                 )
             }
+            val expense = viewModel.getTotalExpense(state.value)
+            val income = viewModel.getTotalIncome(state.value)
+            val balance = viewModel.getBalance(state.value)
+
             CardItem(
                 modifier = Modifier
                     .constrainAs(card) {
                         top.linkTo(nameRow.bottom)
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
-                    }
+                    },
+                expense, income, balance
             )
 
             TransactionList(modifier = Modifier
@@ -83,7 +93,7 @@ fun HomeScreen() {
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom)
                     height = Dimension.fillToConstraints
-                })
+                }, state.value)
 
         }
     }
